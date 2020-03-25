@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "886091773507",
+    "firebase_url": "https://xreader-d91b9.firebaseio.com",
+    "project_id": "xreader-d91b9",
+    "storage_bucket": "xreader-d91b9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:886091773507:android:dba6d04da39f07a2de86f6",
+        "android_client_info": {
+          "package_name": "com.example.xreader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "886091773507-6e293aa1mtiompagkffcda11nokcmgbt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPvQLrsXOurLlM7i1MJ6Dr8MP0-hGbCLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "886091773507-6e293aa1mtiompagkffcda11nokcmgbt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
