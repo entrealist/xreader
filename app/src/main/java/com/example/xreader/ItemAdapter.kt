@@ -6,30 +6,37 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.xreader.model.Book
 import kotlinx.android.synthetic.main.item_view_holder.view.*
 
-class ItemAdapter (private val myDataset: Array<String>, val onItemClickListener:OnItemClickListener) :
+class ItemAdapter (val onItemClickListener:OnItemClickListener) :
     RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
+
+    var myDataset = ArrayList<Book>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
        val itemViewHolderLayout = LayoutInflater.from(parent.context).inflate(R.layout.item_view_holder,parent,false)
         val itemViewHolder = ItemViewHolder(itemViewHolderLayout)
         return itemViewHolder
     }
+    fun setData(books:ArrayList<Book>){
+        this.myDataset = books
+        this.notifyDataSetChanged()
+    }
 
     override fun getItemCount(): Int {
-       return 10
+       return myDataset.size
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.bind("Title"+position,position,onItemClickListener )
+        holder.bind(myDataset[position],position,onItemClickListener )
     }
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        fun bind(title:String,position: Int,onItemClickListener:OnItemClickListener){
+        fun bind(book:Book,position: Int,onItemClickListener:OnItemClickListener){
           var textView =  itemView.findViewById<TextView>(R.id.title)
-            textView.text = "TITITLE"
+            textView.text = book.title
             itemView.setOnClickListener {
-                onItemClickListener.onItemClicked(title,position)
+                onItemClickListener.onItemClicked(book,position)
             }
         }
     }
@@ -37,5 +44,5 @@ class ItemAdapter (private val myDataset: Array<String>, val onItemClickListener
 }
 
 interface OnItemClickListener{
-    fun onItemClicked(title: String,position: Int)
+    fun onItemClicked(book: Book,position: Int)
 }

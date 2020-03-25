@@ -9,10 +9,12 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.xreader.model.Book
+import com.example.xreader.model.Chapter
 import kotlinx.android.synthetic.main.chapter_view_holder.view.*
 import kotlinx.android.synthetic.main.item_view_holder.view.*
 
-class ChapterAdapter (private val myDataset: Array<String>, val onItemClickListener:OnItemClickListener) :
+class ChapterAdapter (private var myDataset:Book,val onChapterClickListener:OnChapterClickListener) :
     RecyclerView.Adapter<ChapterAdapter.ChapterViewHolder>() {
     var selectedIndex:Int = -1
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChapterAdapter.ChapterViewHolder{
@@ -22,19 +24,19 @@ class ChapterAdapter (private val myDataset: Array<String>, val onItemClickListe
     }
 
     override fun getItemCount(): Int {
-       return 10
+       return myDataset.chapters?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: ChapterViewHolder, position: Int) {
-        holder.bind("Title"+position,position,selectedIndex,onItemClickListener )
+        holder.bind(myDataset.chapters!!.get(position),position,selectedIndex,onChapterClickListener )
     }
 
     class ChapterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-        fun bind(title:String, position: Int, selectedIndex:Int, onItemClickListener:OnItemClickListener){
+        fun bind(chapter: Chapter?, position: Int, selectedIndex:Int, onChapterClickListener:OnChapterClickListener){
           var textView =  itemView.findViewById<TextView>(R.id.title)
 
-            textView.text = "Ch-"+position+" "+selectedIndex
+            textView.text = chapter?.title
 
             if (selectedIndex == position){
                 Log.d("color","Color primery")
@@ -44,11 +46,13 @@ class ChapterAdapter (private val myDataset: Array<String>, val onItemClickListe
                 itemView.container.setBackgroundResource(R.color.white)
             }
             itemView.setOnClickListener {
-                onItemClickListener.onItemClicked(title,position)
+                onChapterClickListener.onChapterClicked(chapter!!,position)
             }
         }
     }
 
 }
 
-
+interface OnChapterClickListener{
+    fun onChapterClicked(chapter: Chapter, position: Int)
+}
