@@ -9,11 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.github.florent37.hollyviewpager.HollyViewPagerBus
 import kotlinx.android.synthetic.main.fragment_detail.*
+import kotlinx.android.synthetic.main.fragment_detail.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+
+private const val ARG_CONTENT = "CONTENT"
 
 /**
  * A simple [Fragment] subclass.
@@ -27,13 +30,13 @@ class DetailFragment : Fragment() {
 
     private var param1: String? = null
     private var param2: String? = null
+    private var content:String? = null
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            content = it.getString(ARG_CONTENT)
         }
     }
 
@@ -41,8 +44,9 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+        var view = inflater.inflate(R.layout.fragment_detail, container, false)
+        view.txtContent.text = content
+        return view
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -96,11 +100,11 @@ class DetailFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(content: String) =
             DetailFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+
+                    putString(ARG_CONTENT,content)
                 }
             }
     }

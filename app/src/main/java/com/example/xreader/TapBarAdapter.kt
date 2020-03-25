@@ -9,10 +9,12 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.xreader.model.Book
+import com.example.xreader.model.Chapter
 import kotlinx.android.synthetic.main.chapter_view_holder.view.*
 import kotlinx.android.synthetic.main.item_view_holder.view.*
 
-class TapBarAdapter (private val myDataset: Array<String>, val onItemClickListener:OnItemClickListener) :
+class TapBarAdapter (private val myDataset: List<Chapter>, val onItemClickListener:OnTapClickListener) :
     RecyclerView.Adapter<TapBarAdapter.TapBarViewHolder>() {
     var selectedIndex:Int = 0
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TapBarAdapter.TapBarViewHolder{
@@ -22,19 +24,19 @@ class TapBarAdapter (private val myDataset: Array<String>, val onItemClickListen
     }
 
     override fun getItemCount(): Int {
-       return 10
+       return myDataset.size
     }
 
     override fun onBindViewHolder(holder: TapBarViewHolder, position: Int) {
-        holder.bind("Title"+position,position,selectedIndex,onItemClickListener )
+        holder.bind(myDataset[position].title!!,position,selectedIndex,onItemClickListener )
     }
 
     class TapBarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-        fun bind(title:String, position: Int, selectedIndex:Int, onItemClickListener:OnItemClickListener){
+        fun bind(title:String, position: Int, selectedIndex:Int, onItemClickListener:OnTapClickListener){
           var textView =  itemView.findViewById<TextView>(R.id.title)
 
-            textView.text = "Ch-"+position+" "+selectedIndex
+            textView.text = title
 
             if (selectedIndex == position){
                 Log.d("color","Color primery")
@@ -44,7 +46,7 @@ class TapBarAdapter (private val myDataset: Array<String>, val onItemClickListen
                 itemView.container.setBackgroundResource(R.color.white)
             }
             itemView.setOnClickListener {
-                onItemClickListener.onItemClicked(title,position)
+                onItemClickListener.onTapClickListener(title,position)
             }
         }
     }
@@ -52,3 +54,6 @@ class TapBarAdapter (private val myDataset: Array<String>, val onItemClickListen
 }
 
 
+interface OnTapClickListener{
+    fun onTapClickListener(title: String, position: Int)
+}
