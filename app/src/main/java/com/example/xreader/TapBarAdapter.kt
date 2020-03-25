@@ -36,7 +36,7 @@ class TapBarAdapter (private val myDataset: List<Chapter>, val onItemClickListen
         fun bind(title:String, position: Int, selectedIndex:Int, onItemClickListener:OnTapClickListener){
           var textView =  itemView.findViewById<TextView>(R.id.title)
 
-            textView.text = "Ch-"+position+" "+selectedIndex
+            textView.text = title
 
             if (selectedIndex == position){
                 Log.d("color","Color primery")
