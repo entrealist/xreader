@@ -4,6 +4,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.ViewGroup
 import kotlinx.android.synthetic.main.activity_detail_view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
@@ -13,6 +14,7 @@ import androidx.viewpager.widget.ViewPager
 import com.example.xreader.model.Book
 import com.example.xreader.model.Chapter
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_detail.view.*
 
 
 class DetailViewActivity : AppCompatActivity(),OnTapClickListener,DetailFragment.OnFragmentInteractionListener{
@@ -33,12 +35,14 @@ class DetailViewActivity : AppCompatActivity(),OnTapClickListener,DetailFragment
         selectedChapter = intent.extras.get(CHAPTER_MESSAGE) as Chapter
         pagerAdapter  = object :FragmentPagerAdapter(this.supportFragmentManager){
             override fun getItem(position: Int): Fragment {
-                return DetailFragment()
+                return DetailFragment.newInstance(book.chapters!![position].content ?: "")
             }
 
             override fun getCount(): Int {
                 return book.chapters?.size ?: 0
             }
+
+
 
         }
         viewPager.setAdapter(pagerAdapter)
