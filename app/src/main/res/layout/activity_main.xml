@@ -7,11 +7,11 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcItem"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:overScrollMode="never"/>
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/rcItem"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:overScrollMode="never"/>-->
 
     <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"

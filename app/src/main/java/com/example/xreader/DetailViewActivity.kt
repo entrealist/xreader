@@ -45,8 +45,8 @@ class DetailViewActivity : AppCompatActivity(),OnTapClickListener,DetailFragment
 
 
         }
-        viewPager.setAdapter(pagerAdapter)
-        viewPager.addOnPageChangeListener(object :ViewPager.OnPageChangeListener{
+        vPager.setAdapter(pagerAdapter)
+        vPager.addOnPageChangeListener(object :ViewPager.OnPageChangeListener{
             override fun onPageScrollStateChanged(state: Int) {
 
             }
@@ -80,7 +80,7 @@ class DetailViewActivity : AppCompatActivity(),OnTapClickListener,DetailFragment
     override fun onTapClickListener(title: String, position: Int) {
         tapBarAdapter.selectedIndex = position
         tapBarAdapter.notifyDataSetChanged()
-        viewPager.setCurrentItem(position)
+        vPager.setCurrentItem(position)
     }
 
 

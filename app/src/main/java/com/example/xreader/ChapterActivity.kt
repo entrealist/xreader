@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.xreader.model.Book
 import com.example.xreader.model.Chapter
+import kotlinx.android.synthetic.main.activity_chapter.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class ChapterActivity : AppCompatActivity(),OnChapterClickListener {
@@ -18,8 +19,8 @@ class ChapterActivity : AppCompatActivity(),OnChapterClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chapter)
         book = intent.extras.get(EXTRA_MESSAGE) as Book
-        rcItem.layoutManager = GridLayoutManager(this,2)
-        rcItem.adapter = ChapterAdapter(book,this)
+        items.layoutManager = GridLayoutManager(this,2)
+        items.adapter = ChapterAdapter(book,this)
     }
 
     override fun onChapterClicked(chapter: Chapter, position: Int) {

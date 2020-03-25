@@ -12,12 +12,9 @@ import androidx.core.app.ComponentActivity
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-<<<<<<< HEAD
-import androidx.recyclerview.widget.OrientationHelper
-
-class MainActivity : AppCompatActivity(),OnItemClickListener {
-=======
 import android.util.Log
+import androidx.recyclerview.widget.OrientationHelper
+import androidx.viewpager.widget.ViewPager
 import com.example.xreader.model.Book
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -29,43 +26,33 @@ import com.google.firebase.ktx.Firebase
 class MainActivity : AppCompatActivity(),OnItemClickListener,ValueEventListener {
 
 
->>>>>>> 31eea7a422041c79624531620d8f7f84963c6a3b
     val EXTRA_MESSAGE = "EXTRA_MESSAGE"
     val database = Firebase.database
     var booksRef = database.getReference("books")
     var itemAdapter = ItemAdapter(this)
 
-
+    var mainItemAdapter = MainItemAdapter(this)
 
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+//        rcItem.layoutManager = LinearLayoutManager(this, OrientationHelper.HORIZONTAL, false)
+//        rcItem.adapter = itemAdapter
 
-
-<<<<<<< HEAD
-        val sts:Array<String> = arrayOf("asdf","fasdf")
-        rcItem.layoutManager = LinearLayoutManager(this, OrientationHelper.HORIZONTAL,false)
-        rcItem.adapter = ItemAdapter(sts,this)
-=======
-
-        rcItem.layoutManager = LinearLayoutManager(this)
-        rcItem.adapter = itemAdapter
->>>>>>> 31eea7a422041c79624531620d8f7f84963c6a3b
+        ////////// mine ////////////////////
+        viewPager.adapter = mainItemAdapter
+        viewPager.setPadding(130,0,130,0);
 
        doAsync{
            SheetsService.getValues()
        }
 
         booksRef.addValueEventListener(this)
-
-
     }
 
     override fun onItemClicked(book: Book, position: Int) {
-
-
         val intent = Intent(this, ChapterActivity::class.java).apply {
             putExtra(EXTRA_MESSAGE, book)
         }
@@ -86,7 +73,8 @@ class MainActivity : AppCompatActivity(),OnItemClickListener,ValueEventListener 
                 books.add(it1) }
         }
 
-        itemAdapter.setData(books)
+//        itemAdapter.setData(books)
+        mainItemAdapter.setData(books,this)
         Log.d("data",books.toString())
 
     }
