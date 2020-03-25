@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.item_view_holder.view.*
 class ItemAdapter (private val myDataset: Array<String>, val onItemClickListener:OnItemClickListener) :
     RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-       val itemViewHolderLayout = LayoutInflater.from(parent.context).inflate(R.layout.item_view_holder,parent,false)
+        val itemViewHolderLayout = LayoutInflater.from(parent.context).inflate(R.layout.item_view_holder,parent,false)
         val itemViewHolder = ItemViewHolder(itemViewHolderLayout)
         return itemViewHolder
     }
