@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.xreader.model.Book
 import com.example.xreader.model.Chapter
 import kotlinx.android.synthetic.main.activity_chapter.*
+import kotlinx.android.synthetic.main.activity_chapter.btnBack
+import kotlinx.android.synthetic.main.activity_chapter.txtBookTitle
+import kotlinx.android.synthetic.main.activity_detail_view.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class ChapterActivity : AppCompatActivity(),OnChapterClickListener {
@@ -19,6 +22,11 @@ class ChapterActivity : AppCompatActivity(),OnChapterClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chapter)
         book = intent.extras.get(EXTRA_MESSAGE) as Book
+
+        txtBookTitle.text = book.title
+        btnBack.setOnClickListener {
+            onBackPressed()
+        }
         items.layoutManager = GridLayoutManager(this,2)
         items.adapter = ChapterAdapter(book,this)
     }

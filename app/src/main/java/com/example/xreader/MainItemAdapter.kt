@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.viewpager.widget.PagerAdapter
 import com.example.xreader.model.Book
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.item_view_holder.view.*
 
 class MainItemAdapter(val itemClickListener: OnItemClickListener) : PagerAdapter()
 {
@@ -35,7 +37,8 @@ class MainItemAdapter(val itemClickListener: OnItemClickListener) : PagerAdapter
         var textView =  view.findViewById<TextView>(R.id.title)
         var desc =  view.findViewById<TextView>(R.id.desc)
         textView.text = myDataset.get(position).title
-//        desc.text = myDataset.get(position).description
+        desc.text = myDataset.get(position).description
+        Picasso.get().load(myDataset.get(position).image).into(view.imageCover)
 
         view.setOnClickListener {
             itemClickListener.onItemClicked(myDataset.get(position),position)

@@ -23,6 +23,7 @@
         >
 
         <ImageView
+            android:id="@+id/imageCover"
             android:src="@drawable/download"
             android:layout_width="match_parent"
             android:layout_height="350dp"

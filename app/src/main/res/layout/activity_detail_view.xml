@@ -30,7 +30,7 @@
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             android:background="@color/white"
             android:orientation="horizontal"
             android:elevation="2dp"
@@ -39,18 +39,23 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_back" />
+                android:id="@+id/btnBack"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_back"
+                android:layout_gravity="center"/>
 
             <TextView
+                android:id="@+id/txtBookTitle"
+                android:textSize="24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:text="Chapter 6"
                 android:textAlignment="center"
-                android:textColor="@android:color/white" />
+                android:layout_marginRight="50dp"
+                android:textColor="@android:color/black" />
 
 
         </LinearLayout>
@@ -58,7 +63,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/chepterRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@color/white_70"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

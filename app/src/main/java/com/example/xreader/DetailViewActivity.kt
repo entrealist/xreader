@@ -33,6 +33,12 @@ class DetailViewActivity : AppCompatActivity(),OnTapClickListener,DetailFragment
         setContentView(R.layout.activity_detail_view)
         book = intent.extras.get(EXTRA_MESSAGE) as Book
         selectedChapter = intent.extras.get(CHAPTER_MESSAGE) as Chapter
+
+        txtBookTitle.text = book.title
+        btnBack.setOnClickListener {
+                    onBackPressed()
+                }
+
         pagerAdapter  = object :FragmentPagerAdapter(this.supportFragmentManager){
             override fun getItem(position: Int): Fragment {
                 return DetailFragment.newInstance(book.chapters!![position].content ?: "")
@@ -73,6 +79,7 @@ class DetailViewActivity : AppCompatActivity(),OnTapClickListener,DetailFragment
         chepterRecyclerView.layoutManager = layoutManager
         tapBarAdapter = TapBarAdapter(book!!.chapters!!,this)
         chepterRecyclerView.adapter = tapBarAdapter
+
 
 
 
