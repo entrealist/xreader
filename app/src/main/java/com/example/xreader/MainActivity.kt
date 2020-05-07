@@ -16,6 +16,8 @@ import android.util.Log
 import androidx.recyclerview.widget.OrientationHelper
 import androidx.viewpager.widget.ViewPager
 import com.example.xreader.model.Book
+import com.example.xreader.model.Chapter
+import com.google.android.gms.common.util.ArrayUtils
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -53,9 +55,11 @@ class MainActivity : AppCompatActivity(),OnItemClickListener,ValueEventListener 
     }
 
     override fun onItemClicked(book: Book, position: Int) {
+        Log.d("book",book.toString())
         val intent = Intent(this, ChapterActivity::class.java).apply {
             putExtra(EXTRA_MESSAGE, book)
         }
+
         startActivity(intent)
     }
 
@@ -65,12 +69,38 @@ class MainActivity : AppCompatActivity(),OnItemClickListener,ValueEventListener 
 
     override fun onDataChange(p0: DataSnapshot) {
         var books = ArrayList<Book>()
+        var chapters = ArrayList<Chapter>();
+
         Log.d("firebase",p0.toString())
+
         p0.children.forEach {
-            val book = it.getValue(Book::class.java)
+//            val book = it.getValue(Book::class.java)
+
+            it.child("chapters").children.forEach{
+
+                val id = (it.child("id").value).toString()
+                val content = (it.child("content").value).toString()
+                val title = (it.child("title").value).toString()
+
+                val chapter = Chapter(id,content,title)
+
+                chapter?.let { it1 ->
+
+                    chapters.add(it1) }
+            }
+
+            val id = (it.child("id").value).toString()
+            val description = (it.child("description").value).toString()
+            val image = (it.child("image").value).toString()
+            val title = (it.child("title").value).toString()
+
+            val book = Book(id,chapters,title,description,image)
+
             book?.let { it1 ->
 
                 books.add(it1) }
+
+//            Log.d("a", (it.child("id").value).toString())
         }
 
 //        itemAdapter.setData(books)

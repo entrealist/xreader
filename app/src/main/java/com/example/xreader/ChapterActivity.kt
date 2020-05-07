@@ -21,14 +21,14 @@ class ChapterActivity : AppCompatActivity(),OnChapterClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chapter)
-        book = intent.extras.get(EXTRA_MESSAGE) as Book
-
-        txtBookTitle.text = book.title
-        btnBack.setOnClickListener {
-            onBackPressed()
-        }
-        items.layoutManager = GridLayoutManager(this,2)
-        items.adapter = ChapterAdapter(book,this)
+//        book = intent.extras.get(EXTRA_MESSAGE) as Book
+//
+//        txtBookTitle.text = book.title
+//        btnBack.setOnClickListener {
+//            onBackPressed()
+//        }
+//        items.layoutManager = GridLayoutManager(this,2)
+//        items.adapter = ChapterAdapter(book,this)
     }
 
     override fun onChapterClicked(chapter: Chapter, position: Int) {
