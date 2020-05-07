@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.OrientationHelper
 import androidx.viewpager.widget.ViewPager
 import com.example.xreader.model.Book
 import com.example.xreader.model.Chapter
+import com.example.xreader.model.ListBook
 import com.google.android.gms.common.util.ArrayUtils
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -47,18 +48,18 @@ class MainActivity : AppCompatActivity(),OnItemClickListener,ValueEventListener 
         viewPager.adapter = mainItemAdapter
         viewPager.setPadding(130,0,130,0);
 
-       doAsync{
-           SheetsService.getValues()
-       }
+//       doAsync{
+//           SheetsService.getValues()
+//       }
 
         booksRef.addValueEventListener(this)
     }
 
     override fun onItemClicked(book: Book, position: Int) {
+
         Log.d("book",book.toString())
-        val intent = Intent(this, ChapterActivity::class.java).apply {
-            putExtra(EXTRA_MESSAGE, book)
-        }
+        val intent = Intent(this, ChapterActivity::class.java)
+        intent.putExtra(EXTRA_MESSAGE,book.id)
 
         startActivity(intent)
     }
@@ -71,10 +72,10 @@ class MainActivity : AppCompatActivity(),OnItemClickListener,ValueEventListener 
         var books = ArrayList<Book>()
         var chapters = ArrayList<Chapter>();
 
-        Log.d("firebase",p0.toString())
 
         p0.children.forEach {
-//            val book = it.getValue(Book::class.java)
+//           val bookser = it.getValue(Book::class.java)
+            //Log.d("bookser",bookser.toString())
 
             it.child("chapters").children.forEach{
 
@@ -103,7 +104,7 @@ class MainActivity : AppCompatActivity(),OnItemClickListener,ValueEventListener 
 //            Log.d("a", (it.child("id").value).toString())
         }
 
-//        itemAdapter.setData(books)
+        itemAdapter.setData(books)
         mainItemAdapter.setData(books,this)
         Log.d("data",books.toString())
 

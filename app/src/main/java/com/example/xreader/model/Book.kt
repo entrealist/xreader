@@ -1,5 +1,6 @@
 package com.example.xreader.model
 
+import com.google.common.reflect.TypeToken
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
@@ -16,3 +17,5 @@ data class Book  (
 
 
 }
+
+class ListBook : TypeToken<List<Book>>()

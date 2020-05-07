@@ -47,7 +47,8 @@ class DetailFragment : Fragment() {
     ): View? {
         var view = inflater.inflate(R.layout.fragment_detail, container, false)
         view.webView.settings.javaScriptEnabled = true
-        view.webView.loadData(content,"text/html", "utf-8")
+        val html = "<div style='margin-left:auto;margin-right:auto; font-size:1.2em'>"+content+"</div>"
+        view.webView.loadData(html,"text/html", "utf-8")
 
         return view
     }

@@ -33,6 +33,8 @@ class DetailViewActivity : AppCompatActivity(),OnTapClickListener,DetailFragment
         setContentView(R.layout.activity_detail_view)
         book = intent.extras.get(EXTRA_MESSAGE) as Book
         selectedChapter = intent.extras.get(CHAPTER_MESSAGE) as Chapter
+        Log.d("chapter from chapter ",selectedChapter.toString())
+        Log.d("Bokk from chapter",book.toString())
 
         txtBookTitle.text = book.title
         btnBack.setOnClickListener {
