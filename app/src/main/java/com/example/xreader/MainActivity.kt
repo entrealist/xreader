@@ -2,31 +2,25 @@ package com.example.xreader
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_main.*
-import android.os.StrictMode
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.util.Log
-import androidx.recyclerview.widget.OrientationHelper
-import androidx.viewpager.widget.ViewPager
+import android.view.Gravity
+import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.xreader.model.Book
 import com.example.xreader.model.Chapter
-import com.example.xreader.model.ListBook
-import com.google.android.gms.common.util.ArrayUtils
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity(),OnItemClickListener,ValueEventListener {
+class MainActivity : AppCompatActivity(),OnItemClickListener,ValueEventListener, NavigationView.OnNavigationItemSelectedListener {
 
 
     val EXTRA_MESSAGE = "EXTRA_MESSAGE"
@@ -53,6 +47,12 @@ class MainActivity : AppCompatActivity(),OnItemClickListener,ValueEventListener 
 //       }
 
         booksRef.addValueEventListener(this)
+
+        btnNav.setOnClickListener(View.OnClickListener {
+            drawerLayout.openDrawer(Gravity.LEFT)
+        })
+
+        nv.setNavigationItemSelectedListener(this)
     }
 
     override fun onItemClicked(book: Book, position: Int) {
@@ -108,5 +108,20 @@ class MainActivity : AppCompatActivity(),OnItemClickListener,ValueEventListener 
         mainItemAdapter.setData(books,this)
         Log.d("data",books.toString())
 
+    }
+
+    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
+        when (p0.itemId) {
+            R.id.policy -> {
+                val intent = Intent(this, privacyActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.about -> {
+                val intent = Intent(this, aboutActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        drawerLayout.closeDrawer(Gravity.LEFT)
+        return true
     }
 }

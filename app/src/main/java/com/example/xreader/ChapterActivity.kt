@@ -4,8 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.LinearLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.xreader.model.Book
 import com.example.xreader.model.Chapter
 import com.google.firebase.database.DataSnapshot
@@ -16,6 +19,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_chapter.*
 import kotlinx.android.synthetic.main.activity_chapter.btnBack
 import kotlinx.android.synthetic.main.activity_chapter.txtBookTitle
+import kotlinx.android.synthetic.main.activity_chapter.view.*
 import kotlinx.android.synthetic.main.activity_detail_view.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
@@ -34,7 +38,19 @@ class ChapterActivity : AppCompatActivity(),OnChapterClickListener,ValueEventLis
          val bookID = intent.extras.get(EXTRA_MESSAGE) as String
         booksRef.child(bookID).addValueEventListener(this)
 
+        btnGrid.setOnClickListener(View.OnClickListener {
+            Log.d("hello", "hello")
+            btnLinear.visibility = View.VISIBLE
+            btnGrid.visibility = View.GONE
+            items.layoutManager = GridLayoutManager(this,2)
+        })
 
+        btnLinear.setOnClickListener(View.OnClickListener {
+            Log.d("hello", "hello")
+            btnGrid.visibility = View.VISIBLE
+            btnLinear.visibility = View.GONE
+            items.layoutManager = LinearLayoutManager(this,RecyclerView.VERTICAL,false)
+        })
     }
     override fun onCancelled(p0: DatabaseError) {
 

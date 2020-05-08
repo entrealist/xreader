@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.xreader.model.Book
 import com.example.xreader.model.Chapter
 import kotlinx.android.synthetic.main.chapter_view_holder.view.*
+import kotlinx.android.synthetic.main.chapter_view_holder.view.container
 import kotlinx.android.synthetic.main.item_view_holder.view.*
+import kotlinx.android.synthetic.main.tap_bar_item.view.*
 
 class TapBarAdapter (private val myDataset: List<Chapter>, val onItemClickListener:OnTapClickListener) :
     RecyclerView.Adapter<TapBarAdapter.TapBarViewHolder>() {
@@ -41,9 +43,11 @@ class TapBarAdapter (private val myDataset: List<Chapter>, val onItemClickListen
             if (selectedIndex == position){
                 Log.d("color","Color primery")
                 itemView.container.setBackgroundResource(R.color.selected_item)
+                textView.setTextColor(Color.parseColor("#FFFFFF"));
             }else{
                 Log.d("color","Color accent")
                 itemView.container.setBackgroundResource(R.color.white)
+                textView.setTextColor(Color.parseColor("#000000"));
             }
             itemView.setOnClickListener {
                 onItemClickListener.onTapClickListener(title,position)

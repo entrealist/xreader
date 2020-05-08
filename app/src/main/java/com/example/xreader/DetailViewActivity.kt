@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
+import androidx.core.graphics.toColorInt
 import kotlinx.android.synthetic.main.activity_detail_view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
@@ -90,6 +91,7 @@ class DetailViewActivity : AppCompatActivity(),OnTapClickListener,DetailFragment
         tapBarAdapter.selectedIndex = position
         tapBarAdapter.notifyDataSetChanged()
         vPager.setCurrentItem(position)
+
     }
 
 

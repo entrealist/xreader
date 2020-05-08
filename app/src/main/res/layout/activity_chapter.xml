@@ -10,12 +10,13 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@color/white"
+            android:background="@android:color/holo_blue_light"
             android:orientation="horizontal"
             android:elevation="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            >
 
                 <ImageView
                     android:id="@+id/btnBack"
@@ -33,15 +34,30 @@
                     android:layout_weight="1"
                     android:text="Chapter 6"
                     android:textAlignment="center"
-                    android:layout_marginRight="50dp"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/white" />
 
+                <ImageView
+                    android:id="@+id/btnGrid"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_grid"
+                    android:layout_gravity="center"
+                    android:padding="6dp"
+                    android:visibility="gone"/>
 
+                <ImageView
+                    android:id="@+id/btnLinear"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_linear"
+                    android:layout_gravity="center"
+                    android:padding="6dp"/>
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/items"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
            />
 
 </LinearLayout>
